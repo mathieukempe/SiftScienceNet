@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiftScienceNet", "SiftScienceNet\SiftScienceNet.csproj", "{7D57EF7D-3AB6-458C-84C0-EB9867D58608}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiftScienceTest", "SiftScienceTest\SiftScienceTest.csproj", "{1761A189-BE55-4F85-93B3-283E7DE5DACA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1761A189-BE55-4F85-93B3-283E7DE5DACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1761A189-BE55-4F85-93B3-283E7DE5DACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1761A189-BE55-4F85-93B3-283E7DE5DACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1761A189-BE55-4F85-93B3-283E7DE5DACA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
