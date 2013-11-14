@@ -14,6 +14,9 @@ namespace SiftScienceNet.Events
         [JsonProperty("$user_email")]
         public string UserEmail { get; set; }
 
+        [JsonProperty("$session_id")]
+        public string SessionId { get; set; }
+
         [JsonProperty("$amount")]
         public int Amount { get; set; }
 
