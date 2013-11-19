@@ -251,7 +251,6 @@ siftClient.LinkSessionToUser("1", "u4ryixmnkwxm1aviiyq4yez1");
 
 ```
 
-https://siftscience.com/docs/references/labels-api/
 
 ##Label users in Siftscience
 
