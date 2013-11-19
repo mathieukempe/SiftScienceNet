@@ -109,6 +109,7 @@ namespace SiftScienceNet
             json.Add("$type", "$remove_item_from_cart");
             json.Add("$user_id", userId);
             json.Add("$session_id", sessionId);
+            json.Add("$quantity", quantity);
                     
             var jObjectItem = JObject.Parse(JsonConvert.SerializeObject(item, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$item", jObjectItem);
