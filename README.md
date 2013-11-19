@@ -265,7 +265,7 @@ siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneli
 
 ##User score from Siftscience
 
-[SiftScience labels api](https://siftscience.com/docs/references/labels-api/)
+[SiftScience scores api](https://siftscience.com/docs/getting-scores/)
 
 ```csharp
 
