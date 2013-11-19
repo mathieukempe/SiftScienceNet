@@ -175,6 +175,8 @@ siftClient.UpdateAccount(new Account
 
 ###Add item to cart
 
+```csharp
+
 siftClient.AddItemToCart("1",new Item
             {
                 Category = "digital",
@@ -192,9 +194,10 @@ siftClient.AddItemToCart("1",new Item
                 Sku = "2342",
                 Upc = "234423",                
             },"54f3ds25423523gfdsgf4gfds");
-
+```
 
 ###Remove item from cart
+```csharp
 
  siftClient.RemoveItemToCart("1", new Item
             {
@@ -214,11 +217,15 @@ siftClient.AddItemToCart("1",new Item
                 Upc = "234423",                
             },1,"54f3ds25423523gfdsgf4gfds");
 
-
+```
 
 ###Send message
 
+```csharp
+
 siftClient.SendMessage("1", "4", "some subject", "hello ");
+
+```
 
 ###Login
 
