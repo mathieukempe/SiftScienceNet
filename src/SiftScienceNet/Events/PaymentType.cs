@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace SiftScienceNet.Events
 {
+    [JsonConverter(typeof(PaymentTypeConverter))]
     public enum PaymentType
     {
         CreditCard, 
