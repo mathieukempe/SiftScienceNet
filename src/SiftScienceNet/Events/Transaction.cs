@@ -42,5 +42,8 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$seller_user_id")]
         public string SellerUserId { get; set; }
+
+        [JsonProperty("$time")]
+        public int? Time { get; set; }
     }
 }

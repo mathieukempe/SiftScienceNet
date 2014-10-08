@@ -40,5 +40,8 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$expedited_shipping")]
         public bool? ExpeditedShipping { get; set; }
+
+        [JsonProperty("$time")]
+        public int? Time { get; set; }
     }
 }

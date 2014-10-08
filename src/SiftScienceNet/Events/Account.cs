@@ -31,6 +31,9 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$changed_password")]
         public bool? ChangedPassword { get; set; }
+
+        [JsonProperty("$time")]
+        public int? Time { get; set; }
     }
 
     [JsonConverter(typeof(SocialSignOnConverter))]
