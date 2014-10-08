@@ -202,12 +202,16 @@ namespace SiftScienceNet
 
         #region Labels
 
-        public ResponseStatus Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "")
+        public ResponseStatus Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "")
         {
             JObject json = new JObject();
 
             json.Add("$api_key", _apiKey);
             json.Add("$is_bad", isBad);
+            
+            if(!string.IsNullOrEmpty(analyst))
+                json.Add("$analyst", analyst);
+            
             
             var reasonsForBad = new List<string>();
             if (reasons != null)
@@ -247,7 +251,7 @@ namespace SiftScienceNet
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.PostAsync(string.Format(Globals.LabelsEndpoint, userId), new StringContent(json.ToString(), Encoding.UTF8, "application/json")).Result;
+            HttpResponseMessage response = client.PostAsync(string.Format(Globals.LabelsEndpoint, Uri.EscapeDataString(userId)), new StringContent(json.ToString(), Encoding.UTF8, "application/json")).Result;
 
             if (response.IsSuccessStatusCode)
             {
