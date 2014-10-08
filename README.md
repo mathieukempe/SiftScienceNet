@@ -272,3 +272,17 @@ siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneli
 ScoreResponse scoreResponse = siftClient.GetSiftScore("1");
 
 ```
+
+##Sending Historical data
+
+[SiftScience sending historical data](https://siftscience.com/docs/tutorials/sending-historical-data/)
+
+Order, Transaction and Account have a Time property
+
+```csharp
+  var response = siftClient.CreateOrder(new Order
+            	{
+				Time = DateTime.Now.AddDays(-4).ToUnixTime()
+				...
+
+```
