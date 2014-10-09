@@ -13,11 +13,11 @@ namespace SiftScienceNet
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static long ToUnixTime(this DateTime value)
+        public static int ToUnixTime(this DateTime value)
         {
             if (value.Kind != DateTimeKind.Utc) value = value.ToUniversalTime();
 
-            var seconds = (long)(value - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            var seconds = (int)(value - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
 
             return seconds;
         }
