@@ -278,7 +278,7 @@ namespace SiftScienceNet
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync(string.Format(Globals.ScoresEndpoint, userId, _apiKey)).Result;
+            HttpResponseMessage response = client.GetAsync(string.Format(Globals.ScoresEndpoint, Uri.EscapeDataString(userId), _apiKey)).Result;
 
             if (response.IsSuccessStatusCode)
             {
