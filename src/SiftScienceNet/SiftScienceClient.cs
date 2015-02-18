@@ -26,9 +26,12 @@ namespace SiftScienceNet
 
         #region Events
 
-        public ResponseStatus CustomEvent(string userId, string type, dynamic value)
+        public ResponseStatus CustomEvent(string userId, string type, dynamic customFields = null)
         {
-            JObject o = JObject.Parse(JsonConvert.SerializeObject(value, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            JObject o = new JObject();
+
+            if (customFields != null)
+                o = JObject.Parse(JsonConvert.SerializeObject(customFields));
 
             o.Add("$api_key", _apiKey);
             o.Add("$type", type);
@@ -36,7 +39,8 @@ namespace SiftScienceNet
             o.Add("$time", DateTime.UtcNow.ToUnixTimestamp());
 
             return PostEvent(o.ToString());
-        }                    
+        }
+           
 
         public ResponseStatus CreateOrder(Order order, dynamic customFields = null)
         {
