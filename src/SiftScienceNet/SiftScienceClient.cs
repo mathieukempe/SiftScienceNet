@@ -250,8 +250,7 @@ namespace SiftScienceNet
                 }
 
                 json.Add("$reasons", new JArray(reasonsForBad));
-                json.Add("$source", source);
-                json.Add("$reasons", new JArray(reasonsForBad));
+                json.Add("$source", source);                
             }
             
             if (!String.IsNullOrEmpty(description))
