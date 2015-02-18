@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SiftScienceNet")]
 [assembly: AssemblyDescription("SiftScienceNet is a .NET class library that provides an easy-to-use interface for the SiftScience web api")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Mathieu Kempe")]
 [assembly: AssemblyProduct("SiftScienceNet")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
