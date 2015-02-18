@@ -61,29 +61,32 @@ namespace SiftScienceNet
             }
         }
 
-        public ResponseStatus Transaction(Transaction transaction)
+        public ResponseStatus Transaction(Transaction transaction, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(transaction, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$transaction");
+            AddCustomFields(customFields, json);
 
             return PostEvent(json.ToString());
         }
 
-        public ResponseStatus CreateAccount(Account account)
+        public ResponseStatus CreateAccount(Account account, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(account, Formatting.None, new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore}));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$create_account");
+            AddCustomFields(customFields, json);
 
             return PostEvent(json.ToString());
         }
 
-        public ResponseStatus UpdateAccount(Account account)
+        public ResponseStatus UpdateAccount(Account account, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(account, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$update_account");
+            AddCustomFields(customFields, json);
 
             return PostEvent(json.ToString());
         }
@@ -202,12 +205,13 @@ namespace SiftScienceNet
 
         #region Labels
 
-        public ResponseStatus Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "")
+        public ResponseStatus Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "")
         {
             JObject json = new JObject();
 
             json.Add("$api_key", _apiKey);
             json.Add("$is_bad", isBad);
+            json.Add("$user_id", Uri.EscapeDataString(userId));
             
             if(!string.IsNullOrEmpty(analyst))
                 json.Add("$analyst", analyst);
@@ -240,7 +244,9 @@ namespace SiftScienceNet
                             break;
                     }
                 }
-                
+
+                json.Add("$reasons", new JArray(reasonsForBad));
+                json.Add("$source", source);
                 json.Add("$reasons", new JArray(reasonsForBad));
             }
             
@@ -291,8 +297,6 @@ namespace SiftScienceNet
         }
 
         #endregion
-
-       
-        
+               
     }
 }
