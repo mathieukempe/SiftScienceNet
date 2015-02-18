@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>    
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Added options to pass custom fields for CreateAccount, UpdateAccount and Transaction + Fixed issue with Label user.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>SiftScience</tags>
+  </metadata>
+</package>
