@@ -227,7 +227,7 @@ siftClient.SendMessage("1", "4", "some subject", "hello ");
 
 ```
 
-###Login
+###Login (Success)
 
 ```csharp
 
@@ -235,11 +235,19 @@ siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", true);
 
 ```
 
-###Logout
+###Login (Failure)
 
 ```csharp
 
 siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", false);
+
+```
+
+###Logout
+
+```csharp
+
+siftClient.Logout("1");
 
 ```
 
