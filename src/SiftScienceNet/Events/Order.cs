@@ -18,7 +18,7 @@ namespace SiftScienceNet.Events
         public string SessionId { get; set; }
 
         [JsonProperty("$amount")]
-        public int Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("$seller_user_id")]
         public string SellerUserId { get; set; }

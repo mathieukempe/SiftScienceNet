@@ -17,7 +17,7 @@ namespace SiftScienceNet.Events
         public TransactionStatus Status { get; set; }
 
         [JsonProperty("$amount")]
-        public int Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("$currency_code")]
         public string CurrencyCode { get; set; }

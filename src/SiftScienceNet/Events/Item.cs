@@ -12,7 +12,7 @@ namespace SiftScienceNet.Events
         public string ProductTitle { get; set; }
 
         [JsonProperty("$price")]
-        public int Price { get; set; }
+        public long Price { get; set; }
 
         [JsonProperty("$currency_code")]
         public string CurrencyCode { get; set; }

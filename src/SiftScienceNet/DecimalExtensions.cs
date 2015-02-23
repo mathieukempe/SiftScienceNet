@@ -8,9 +8,9 @@ namespace SiftScienceNet
 {
     public static class DecimalExtensions
     {
-         public static int ToMicros(this decimal value)
+         public static long ToMicros(this decimal value)
          {
-             return(int)((value*100)*10000);
+             return(long)((value*100)*10000);
          }
     }
 }
