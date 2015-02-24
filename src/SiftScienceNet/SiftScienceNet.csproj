@@ -48,8 +48,9 @@
     <Compile Include="Events\PaymentGateway.cs" />
     <Compile Include="Events\PaymentMethod.cs" />
     <Compile Include="Events\PaymentType.cs" />
+    <Compile Include="Events\Review.cs" />
     <Compile Include="Events\Transaction.cs" />
-    <Compile Include="Events\TransactionStatus.cs" />
+    <Compile Include="Events\Status.cs" />
     <Compile Include="Events\TransactionType.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Labels\Reason.cs" />

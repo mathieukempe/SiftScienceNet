@@ -124,9 +124,15 @@ namespace SiftScienceNet
             return PostEvent(json.ToString());
         }
 
-        public void SubmitReview()
+        public ResponseStatus SubmitReview(Review review, dynamic customFields = null)
         {
-            throw new NotImplementedException();
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(review, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$submit_review");
+          
+            AddCustomFields(customFields, json);
+
+            return PostEvent(json.ToString());
         }
 
         public ResponseStatus SendMessage(string userId, string recipientUserId, string subject = "", string content = "")
