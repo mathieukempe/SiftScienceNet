@@ -14,7 +14,7 @@ namespace SiftScienceNet.Events
         public TransactionType TransactionType { get; set; }
 
         [JsonProperty("$transaction_status")]
-        public TransactionStatus Status { get; set; }
+        public Status TransactionStatus { get; set; }
 
         [JsonProperty("$amount")]
         public long Amount { get; set; }
