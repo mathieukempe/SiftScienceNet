@@ -22,6 +22,9 @@ namespace SiftScienceNet.Events
         [JsonProperty("$cvv_result_code")]
         public string CvvResultCode { get; set; }
 
+        [JsonProperty("$verification_status")]
+        public Status VerificationStatus { get; set; }
+
         [JsonProperty("$routing_number")]
         public string RoutingNumber { get; set; }
     }

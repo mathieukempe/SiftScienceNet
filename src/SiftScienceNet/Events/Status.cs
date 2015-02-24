@@ -3,27 +3,27 @@ using Newtonsoft.Json;
 
 namespace SiftScienceNet.Events
 {
-    [JsonConverter(typeof(TransactionStatusConverter))]
-    public enum TransactionStatus
+    [JsonConverter(typeof(StatusConverter))]
+    public enum Status
     {
         Success,
         Failure,
         Pending
     }
 
-    public class TransactionStatusConverter : JsonConverter
+    public class StatusConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            TransactionStatus transactionStatus = (TransactionStatus)value;
+            Status status = (Status)value;
 
-            if (transactionStatus == TransactionStatus.Success)
+            if (status == Status.Success)
                 writer.WriteValue("$success");
 
-            if (transactionStatus == TransactionStatus.Failure)
+            if (status == Status.Failure)
                 writer.WriteValue("$failure");
 
-            if (transactionStatus == TransactionStatus.Pending)
+            if (status == Status.Pending)
                 writer.WriteValue("$pending");            
         }
 
@@ -34,7 +34,7 @@ namespace SiftScienceNet.Events
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(TransactionStatus);
+            return objectType == typeof(Status);
         }
     }
 }
