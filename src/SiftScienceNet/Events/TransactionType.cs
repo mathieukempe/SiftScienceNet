@@ -10,7 +10,10 @@ namespace SiftScienceNet.Events
         Authorize,
         Capture,
         Void,
-        Refund
+        Refund,
+        Deposit,
+        Withdrawal,
+        Transfer
     }
 
     public class TransactionTypeConverter : JsonConverter
@@ -33,6 +36,15 @@ namespace SiftScienceNet.Events
 
             if (transactionType == TransactionType.Refund)
                 writer.WriteValue("$refund");
+
+            if (transactionType == TransactionType.Deposit)
+                writer.WriteValue("$deposit");
+
+            if (transactionType == TransactionType.Refund)
+                writer.WriteValue("$withdrawal");
+
+            if (transactionType == TransactionType.Refund)
+                writer.WriteValue("$transfer");
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
