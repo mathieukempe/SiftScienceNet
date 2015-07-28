@@ -27,8 +27,50 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$routing_number")]
         public string RoutingNumber { get; set; }
+
+        [JsonProperty("$decline_reason_code")]
+        public string DeclineReasonCode { get; set; }
+
+        [JsonProperty("$paypal_payer_id")]
+        public string PaypalPayerId { get; set; }
+
+        [JsonProperty("$paypal_payer_email")]
+        public string PaypalPayerEmail { get; set; }
+
+        [JsonProperty("$paypal_payer_status")]
+        public string PaypalPayerStatus { get; set; }
+
+        [JsonProperty("$paypal_protection_eligibility")]
+        public string PaypalProtectionEligibility { get; set; }
+
+        [JsonProperty("$paypal_payment_status")]
+        public string PaypalPaymentStatus { get; set; }
+
+        [JsonProperty("$stripe_token")]
+        public string StripeToken { get; set; }
+
+        [JsonProperty("$stripe_cvc_check")]
+        public string StripeCvcCheck { get; set; }
+
+        [JsonProperty("$stripe_address_line1_check")]
+        public string StripeAddressLine1Check { get; set; }
+
+        [JsonProperty("$stripe_address_line2_check")]
+        public string StripeAddressLine2Check { get; set; }
+
+        [JsonProperty("$stripe_address_zip_check")]
+        public string StripeAddressZipCheck { get; set; }
+
+        [JsonProperty("$stripe_funding")]
+        public string StripeFunding { get; set; }
+
+        [JsonProperty("$stripe_brand")]
+        public string StripeBrand { get; set; }
+
+
+
     }
 
 
-   
+
 }
