@@ -43,6 +43,7 @@
     <Compile Include="Events\Account.cs" />
     <Compile Include="Events\Address.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="Events\CreateContent.cs" />
     <Compile Include="Events\Item.cs" />
     <Compile Include="Events\Order.cs" />
     <Compile Include="Events\PaymentGateway.cs" />

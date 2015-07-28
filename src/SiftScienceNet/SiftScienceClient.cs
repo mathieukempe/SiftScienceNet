@@ -135,6 +135,17 @@ namespace SiftScienceNet
             return PostEvent(json.ToString());
         }
 
+        public ResponseStatus CreateContent(CreateContent content, dynamic customFields = null)
+        {
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$create_content");
+
+            AddCustomFields(customFields, json);
+
+            return PostEvent(json.ToString());
+        }
+
         public ResponseStatus SendMessage(string userId, string recipientUserId, string subject = "", string content = "")
         {
             JObject json = new JObject();
