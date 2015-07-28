@@ -10,7 +10,8 @@ namespace SiftScienceNet.Events
         Braintree,
         Paypal,
         AmazonPayments,
-        Authorizenet        
+        Authorizenet,
+        Adyen        
     }
 
     public class PaymentGatewayConverter : JsonConverter
@@ -33,6 +34,9 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Authorizenet)
                 writer.WriteValue("$authorizenet");
+
+            if (paymentGateway == PaymentGateway.Adyen)
+                writer.WriteValue("$adyen");
 
         }
 
