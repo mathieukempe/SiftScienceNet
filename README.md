@@ -11,6 +11,19 @@ SiftScienceClient siftClient = new SiftScienceClient("<Your Api key>");
 
 ```
 
+Than to create an events
+
+```csharp
+
+var response = await client.CreateOrder(new Order
+    {
+        ...
+    });
+
+```
+
+
+
 ##Sending events to Siftscience
 
 [SiftScience events api](https://siftscience.com/docs/references/events-api)
