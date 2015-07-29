@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SiftScienceNet")]
-[assembly: AssemblyDescription("SiftScienceNet is a .NET class library that provides an easy-to-use interface for the SiftScience web api")]
+[assembly: AssemblyDescription("SiftScienceNet is a .NET class library that provides an easy-to-use async interface for the SiftScience web api")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mathieu Kempe")]
 [assembly: AssemblyProduct("SiftScienceNet")]
