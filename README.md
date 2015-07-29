@@ -15,10 +15,7 @@ Than to create an events
 
 ```csharp
 
-var response = await client.CreateOrder(new Order
-    {
-        ...
-    });
+var response = await siftClient.CreateOrder(new Order{ ... });
 
 ```
 
