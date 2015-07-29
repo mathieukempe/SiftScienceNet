@@ -1,7 +1,7 @@
 SiftScienceNet
 ==============
 
-SiftScienceNet is a .NET class library that provides an easy-to-use interface for the  [SiftScience](https://siftscience.com) SiftScience web api. 
+SiftScienceNet is a .NET class library that provides an easy-to-use async interface for the  [SiftScience](https://siftscience.com) SiftScience web api. 
 
 ##Initializing
 
@@ -10,6 +10,16 @@ SiftScienceNet is a .NET class library that provides an easy-to-use interface fo
 SiftScienceClient siftClient = new SiftScienceClient("<Your Api key>");
 
 ```
+
+Than to create an events
+
+```csharp
+
+var response = await siftClient.CreateOrder(new Order{ ... });
+
+```
+
+
 
 ##Sending events to Siftscience
 
@@ -75,7 +85,7 @@ var response = siftClient.CreateOrder(new Order
                                                                         PaymentType = PaymentType.CreditCard
                                                                     }},
 
-               });
+               }).Result;
 
 
 ```
@@ -123,7 +133,7 @@ var response = siftClient.Transaction(new Transaction
                    TransactionType = TransactionType.Capture,
                    UserEmail = "mathieukempe@somemail.com",
                    TransactionId = "234423"
-               });
+               }).Result;
 
 ```
 
@@ -143,7 +153,7 @@ siftClient.CreateAccount(new Account
                                      City = "Mulhouse",
                                      Country = "FR"
                                  }
-                         });
+                         }).Result;
 
 ```
 
@@ -169,7 +179,7 @@ siftClient.UpdateAccount(new Account
 			                                     },
 			                ChangedPassword = true
 			
-			            });
+			            }).Result;
 
 ```
 
@@ -193,7 +203,7 @@ siftClient.AddItemToCart("1",new Item
                 Size = "Large",
                 Sku = "2342",
                 Upc = "234423",                
-            },"54f3ds25423523gfdsgf4gfds");
+            },"54f3ds25423523gfdsgf4gfds").Result;
 ```
 
 ###Remove item from cart
@@ -215,7 +225,7 @@ siftClient.AddItemToCart("1",new Item
                 Size = "Large",
                 Sku = "2342",
                 Upc = "234423",                
-            },1,"54f3ds25423523gfdsgf4gfds");
+            },1,"54f3ds25423523gfdsgf4gfds").Result;
 
 ```
 
@@ -223,7 +233,7 @@ siftClient.AddItemToCart("1",new Item
 
 ```csharp
 
-siftClient.SendMessage("1", "4", "some subject", "hello ");
+siftClient.SendMessage("1", "4", "some subject", "hello ").Result;
 
 ```
 
@@ -231,7 +241,7 @@ siftClient.SendMessage("1", "4", "some subject", "hello ");
 
 ```csharp
 
-siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", true);
+siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", true).Result;
 
 ```
 
@@ -239,7 +249,7 @@ siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", true);
 
 ```csharp
 
-siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", false);
+siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", false).Result;
 
 ```
 
@@ -247,7 +257,7 @@ siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", false);
 
 ```csharp
 
-siftClient.Logout("1");
+siftClient.Logout("1").Result;
 
 ```
 
@@ -255,7 +265,7 @@ siftClient.Logout("1");
 
 ```csharp
 
-siftClient.LinkSessionToUser("1", "u4ryixmnkwxm1aviiyq4yez1");
+siftClient.LinkSessionToUser("1", "u4ryixmnkwxm1aviiyq4yez1").Result;
 
 ```
 
@@ -267,7 +277,7 @@ siftClient.LinkSessionToUser("1", "u4ryixmnkwxm1aviiyq4yez1");
 
 ```csharp
 
-siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneling });
+siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneling }).Result;
 
 ```
 
@@ -277,7 +287,7 @@ siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneli
 
 ```csharp
 
-ScoreResponse scoreResponse = siftClient.GetSiftScore("1");
+ScoreResponse scoreResponse = siftClient.GetSiftScore("1").Result;
 
 ```
 
