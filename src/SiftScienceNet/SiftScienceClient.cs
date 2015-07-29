@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SiftScienceNet.Events;
@@ -11,11 +12,30 @@ using SiftScienceNet.Labels;
 using SiftScienceNet.Scores;
 
 namespace SiftScienceNet
-{    
+{
+    public interface ISiftScienceClient
+    {
+        Task<ResponseStatus> CustomEvent(string userId, string type, dynamic customFields = null);
+        Task<ResponseStatus> CreateOrder(Order order, dynamic customFields = null);
+        Task<ResponseStatus> Transaction(Transaction transaction, dynamic customFields = null);
+        Task<ResponseStatus> CreateAccount(Account account, dynamic customFields = null);
+        Task<ResponseStatus> UpdateAccount(Account account, dynamic customFields = null);
+        Task<ResponseStatus> AddItemToCart(string userId, Item item, string sessionId = "");
+        Task<ResponseStatus> RemoveItemToCart(string userId, Item item, int quantity, string sessionId = "");
+        Task<ResponseStatus> SubmitReview(Review review, dynamic customFields = null);
+        Task<ResponseStatus> CreateContent(CreateContent content, dynamic customFields = null);
+        Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "");
+        Task<ResponseStatus> Login(string userId, string sessionId, bool success);
+        Task<ResponseStatus> Logout(string userId);
+        Task<ResponseStatus> LinkSessionToUser(string userId, string sessionId);
+        Task<ResponseStatus> Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "");
+        Task<ScoreResponse> GetSiftScore(string userId);
+    }
+
     /// <summary>
     /// see:https://siftscience.com/docs/rest-api
     /// </summary>
-    public class SiftScienceClient 
+    public class SiftScienceClient : ISiftScienceClient
     {
         private static string _apiKey;
         
@@ -26,7 +46,7 @@ namespace SiftScienceNet
 
         #region Events
 
-        public ResponseStatus CustomEvent(string userId, string type, dynamic customFields = null)
+        public async Task<ResponseStatus> CustomEvent(string userId, string type, dynamic customFields = null)
         {
             JObject o = new JObject();
 
@@ -38,11 +58,11 @@ namespace SiftScienceNet
             o.Add("$user_id", userId);
             o.Add("$time", DateTime.UtcNow.ToUnixTimestamp());
 
-            return PostEvent(o.ToString());
+            return await PostEvent(o.ToString()).ConfigureAwait(false); ;
         }
-           
 
-        public ResponseStatus CreateOrder(Order order, dynamic customFields = null)
+
+        public async Task<ResponseStatus> CreateOrder(Order order, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
@@ -50,7 +70,7 @@ namespace SiftScienceNet
 
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
         private void AddCustomFields(dynamic customFields, JObject json)
@@ -65,37 +85,37 @@ namespace SiftScienceNet
             }
         }
 
-        public ResponseStatus Transaction(Transaction transaction, dynamic customFields = null)
+        public async Task<ResponseStatus> Transaction(Transaction transaction, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(transaction, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$transaction");
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus CreateAccount(Account account, dynamic customFields = null)
+        public async Task<ResponseStatus> CreateAccount(Account account, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(account, Formatting.None, new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore}));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$create_account");
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus UpdateAccount(Account account, dynamic customFields = null)
+        public async Task<ResponseStatus> UpdateAccount(Account account, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(account, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$update_account");
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus AddItemToCart(string userId, Item item, string sessionId = "")
+        public async Task<ResponseStatus> AddItemToCart(string userId, Item item, string sessionId = "")
         {
             JObject json = new JObject();
             json.Add("$api_key", _apiKey);
@@ -106,10 +126,10 @@ namespace SiftScienceNet
             var jObjectItem = JObject.Parse(JsonConvert.SerializeObject(item, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$item", jObjectItem);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus RemoveItemToCart(string userId, Item item, int quantity, string sessionId = "")
+        public async Task<ResponseStatus> RemoveItemToCart(string userId, Item item, int quantity, string sessionId = "")
         {
             JObject json = new JObject();
             json.Add("$api_key", _apiKey);
@@ -121,10 +141,10 @@ namespace SiftScienceNet
             var jObjectItem = JObject.Parse(JsonConvert.SerializeObject(item, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$item", jObjectItem);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus SubmitReview(Review review, dynamic customFields = null)
+        public async Task<ResponseStatus> SubmitReview(Review review, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(review, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
@@ -132,10 +152,10 @@ namespace SiftScienceNet
           
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus CreateContent(CreateContent content, dynamic customFields = null)
+        public async Task<ResponseStatus> CreateContent(CreateContent content, dynamic customFields = null)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
@@ -143,10 +163,10 @@ namespace SiftScienceNet
 
             AddCustomFields(customFields, json);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus SendMessage(string userId, string recipientUserId, string subject = "", string content = "")
+        public async Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "")
         {
             JObject json = new JObject();
 
@@ -161,10 +181,10 @@ namespace SiftScienceNet
             if(!String.IsNullOrEmpty(content))
                 json.Add("$content", content);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus Login(string userId, string sessionId, bool success)
+        public async Task<ResponseStatus> Login(string userId, string sessionId, bool success)
         {
             JObject json = new JObject();
 
@@ -174,21 +194,21 @@ namespace SiftScienceNet
             json.Add("$session_id", sessionId);
             json.Add("$login_status", success ? "$success" : "$failure");
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus Logout(string userId)
+        public async Task<ResponseStatus> Logout(string userId)
         {
             JObject json = new JObject();
 
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$logout");
             json.Add("$user_id", userId);
-            
-            return PostEvent(json.ToString());
+
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        public ResponseStatus LinkSessionToUser(string userId, string sessionId)
+        public async Task<ResponseStatus> LinkSessionToUser(string userId, string sessionId)
         {
             JObject json = new JObject();
 
@@ -197,15 +217,15 @@ namespace SiftScienceNet
             json.Add("$user_id", userId);
             json.Add("$session_id", sessionId);
 
-            return PostEvent(json.ToString());
+            return await PostEvent(json.ToString()).ConfigureAwait(false);
         }
 
-        private ResponseStatus PostEvent(string jsonContent)
+        private async Task<ResponseStatus> PostEvent(string jsonContent)
         {            
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.PostAsync(Globals.EventsEndpoint , new StringContent(jsonContent, Encoding.UTF8, "application/json")).Result;
+            HttpResponseMessage response = await client.PostAsync(Globals.EventsEndpoint, new StringContent(jsonContent, Encoding.UTF8, "application/json")).ConfigureAwait(false); ;
 
             if (response.IsSuccessStatusCode)
             {
@@ -226,7 +246,7 @@ namespace SiftScienceNet
 
         #region Labels
 
-        public ResponseStatus Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "")
+        public async Task<ResponseStatus> Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "")
         {
             JObject json = new JObject();
 
@@ -277,7 +297,7 @@ namespace SiftScienceNet
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = client.PostAsync(string.Format(Globals.LabelsEndpoint, Uri.EscapeDataString(userId)), new StringContent(json.ToString(), Encoding.UTF8, "application/json")).Result;
+            HttpResponseMessage response = await client.PostAsync(string.Format(Globals.LabelsEndpoint, Uri.EscapeDataString(userId)), new StringContent(json.ToString(), Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -299,12 +319,12 @@ namespace SiftScienceNet
 
         #region Scores
 
-        public ScoreResponse GetSiftScore(string userId)
+        public async Task<ScoreResponse> GetSiftScore(string userId)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync(string.Format(Globals.ScoresEndpoint, Uri.EscapeDataString(userId), _apiKey)).Result;
+            HttpResponseMessage response = await client.GetAsync(string.Format(Globals.ScoresEndpoint, Uri.EscapeDataString(userId), _apiKey)).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
