@@ -8,8 +8,8 @@
     <owners>$author$</owners>    
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added options to pass custom fields for CreateAccount, UpdateAccount and Transaction + Fixed issue with Label user.</releaseNotes>
+    <releaseNotes>Updated client to use asynchronous.</releaseNotes>
     <copyright>Copyright 2015</copyright>
-    <tags>SiftScience</tags>
+    <tags>SiftScience, async client</tags>
   </metadata>
 </package>
