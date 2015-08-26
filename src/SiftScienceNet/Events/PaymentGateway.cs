@@ -11,7 +11,9 @@ namespace SiftScienceNet.Events
         Paypal,
         AmazonPayments,
         Authorizenet,
-        Adyen        
+        Adyen,
+        SagePay,
+        OptimalPayments
     }
 
     public class PaymentGatewayConverter : JsonConverter
@@ -37,6 +39,12 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Adyen)
                 writer.WriteValue("$adyen");
+
+            if (paymentGateway == PaymentGateway.SagePay)
+                writer.WriteValue("$sagepay");
+
+            if (paymentGateway == PaymentGateway.OptimalPayments)
+                writer.WriteValue("$optimal_payments");
 
         }
 
