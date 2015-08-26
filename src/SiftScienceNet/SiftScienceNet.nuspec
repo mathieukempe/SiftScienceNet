@@ -12,5 +12,7 @@
     <copyright>Copyright 2015</copyright>
     <tags>SiftScience, async client</tags>
 	<iconUrl>http://cdn.shopify.com/s/files/applications/e7fa0e1b5b55961c87cf55964c5779a4.png</iconUrl>
+	<projectUrl>https://github.com/mathieukempe/siftsciencenet</projectUrl>
+	<licenseUrl>https://github.com/Selz/SiftScienceNet/blob/master/LICENSE</licenseUrl>
   </metadata>
 </package>
