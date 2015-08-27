@@ -21,6 +21,15 @@ namespace SiftScienceNet.Scores
         public Details Details { get; set; }
     }
 
+    public class LatestLabel
+    {
+        [JsonProperty("is_bad")]
+        public bool IsBad { get; set; }
+
+        [JsonProperty("time")]
+        public int Time { get; set; }
+    }
+
     public class SiftScore
     {
         [JsonProperty("user_id")]
@@ -34,6 +43,9 @@ namespace SiftScienceNet.Scores
 
         [JsonProperty("status")]
         public int Status { get; set; }
+
+        [JsonProperty("latest_label")]
+        public LatestLabel LatestLabel { get; set; }
 
         [JsonProperty("error_message")]
         public string ErrorMessage { get; set; }
