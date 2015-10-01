@@ -96,7 +96,7 @@ var response = siftClient.CreateOrder(new Order
 
 var response = siftClient.Transaction(new Transaction
                {
-                   Amount = 100.ToMicros(),
+                   Amount = 100M.ToMicros(),
                    BillingAddress = new Address
                    {
                        Address1 = "312 Mulhouse street",
@@ -129,7 +129,7 @@ var response = siftClient.Transaction(new Transaction
                                            AvsResultCode = "T",
                                            PaymentGateway = PaymentGateway.Paypal,
                                        },
-                   Status = TransactionStatus.Success,
+                   TransactionStatus = Status.Success,
                    TransactionType = TransactionType.Capture,
                    UserEmail = "mathieukempe@somemail.com",
                    TransactionId = "234423"
