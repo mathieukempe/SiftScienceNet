@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using SiftScienceNet.Scores;
 
 namespace SiftScienceNet
 {
-    public class Error
+    public class SiftResponse
     {
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -15,6 +16,9 @@ namespace SiftScienceNet
 
         [JsonProperty("request")]
         public string Request { get; set; }
+
+        [JsonProperty("score_response")]
+        public SiftScore Score { get; set; }
 
         public override string ToString()
         {

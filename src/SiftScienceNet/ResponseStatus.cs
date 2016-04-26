@@ -1,4 +1,5 @@
 ﻿using SiftScienceNet.Events;
+using SiftScienceNet.Scores;
 
 namespace SiftScienceNet
 {
@@ -6,7 +7,7 @@ namespace SiftScienceNet
     {
         public bool Success { get; set; }
 
-        public Error Error { get; set; }
+        public SiftResponse SiftResponse { get; set; }
 
         public int StatusCode { get; set; }
     }
