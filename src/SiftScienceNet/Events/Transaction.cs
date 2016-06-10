@@ -45,5 +45,8 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$time")]
         public int? Time { get; set; }
+
+        [JsonProperty("$ip")]
+        public string Ip { get; set; }
     }
 }
