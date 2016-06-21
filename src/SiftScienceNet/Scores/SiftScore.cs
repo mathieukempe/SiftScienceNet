@@ -67,24 +67,42 @@ namespace SiftScienceNet.Scores
         /// Unique id for this particular application of the action to this user. Used to reference internal logs if needed
         /// </summary>
         [JsonProperty("action")]
-        public string ActionId { get; set; }
+        public EntityWithId ActionId { get; set; }
 
         /// <summary>
         /// Contains the id of the entity the action was applied to (the user_id passed in the Score API call)
         /// </summary>
         [JsonProperty("entity")]
-        public string Entity { get; set; }
+        public EntityWithId Entity { get; set; }
 
         /// <summary>
         /// The time the action was applied, as UNIX timestamp
         /// </summary>
         [JsonProperty("time")]
-        public int Time { get; set; }
+        public long Time { get; set; }
 
         /// <summary>
         /// A list of what triggered the application of this action to the user. For example, two Formulas and their ids
         /// </summary>
         [JsonProperty("triggers")]
-        public string Triggers { get; set; }
+        public List<TriggerType> Triggers { get; set; }
+    }
+
+    public class EntityWithId
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }        
+    }
+
+    public class TriggerType
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("source")]
+        public string Source { get; set; }
+
+        [JsonProperty("trigger")]
+        public EntityWithId Trigger { get; set; }
     }
 }
