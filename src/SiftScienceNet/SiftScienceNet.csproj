@@ -43,6 +43,7 @@
     <Compile Include="DecimalExtensions.cs" />
     <Compile Include="Events\Account.cs" />
     <Compile Include="Events\Address.cs" />
+    <Compile Include="Events\Chargeback.cs" />
     <Compile Include="SiftResponse.cs" />
     <Compile Include="Events\CreateContent.cs" />
     <Compile Include="Events\Item.cs" />
