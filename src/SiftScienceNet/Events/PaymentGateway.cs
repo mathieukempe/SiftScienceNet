@@ -19,7 +19,7 @@ namespace SiftScienceNet.Events
         CCAvenue,
         ChasePaymentech,
         Checkoutcom,
-        Ciel,
+        Cielo,
         Cofinoga,
         Coinbase,
         Collector,
@@ -58,6 +58,7 @@ namespace SiftScienceNet.Events
         Omise,
         Openpaymx,
         OptimalPayments,
+        PagSeguro,
         PayFast,
         PayGate,
         PaymentExpress,
@@ -117,33 +118,33 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Adyen)
                 writer.WriteValue("$adyen");
-                    
+
             if (paymentGateway == PaymentGateway.Affirm)
                 writer.WriteValue("$affirm");
-                    
+
             if (paymentGateway == PaymentGateway.Alipay)
                 writer.WriteValue("$alipay");
-    
+
             if (paymentGateway == PaymentGateway.AltaPay)
                 writer.WriteValue("$altapay");
-                    
+
             if (paymentGateway == PaymentGateway.AmazonPayments)
                 writer.WriteValue("$amazon_payments");
-                    
+
             if (paymentGateway == PaymentGateway.Authorizenet)
                 writer.WriteValue("$authorizenet");
-                    
+
             if (paymentGateway == PaymentGateway.Balanced)
                 writer.WriteValue("$balanced");
-                    
+
             if (paymentGateway == PaymentGateway.Beanstream)
                 writer.WriteValue("$beanstream");
-                    
+
             if (paymentGateway == PaymentGateway.BluePay)
                 writer.WriteValue("$bluepay");
-                    
+
             if (paymentGateway == PaymentGateway.Braintree)
-                writer.WriteValue("$braintree");                    
+                writer.WriteValue("$braintree");
 
             if (paymentGateway == PaymentGateway.CCAvenue)
                 writer.WriteValue("$ccavenue");
@@ -154,8 +155,8 @@ namespace SiftScienceNet.Events
             if (paymentGateway == PaymentGateway.Checkoutcom)
                 writer.WriteValue("$checkoutcom");
 
-            if (paymentGateway == PaymentGateway.Ciel)
-                writer.WriteValue("$ciel");
+            if (paymentGateway == PaymentGateway.Cielo)
+                writer.WriteValue("$cielo");
 
             if (paymentGateway == PaymentGateway.Cofinoga)
                 writer.WriteValue("$cofinoga");
@@ -270,6 +271,9 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.OptimalPayments)
                 writer.WriteValue("$optimal_payments");
+
+            if (paymentGateway == PaymentGateway.PagSeguro)
+                writer.WriteValue("$pagseguro");
 
             if (paymentGateway == PaymentGateway.PayFast)
                 writer.WriteValue("$payfast");
@@ -417,7 +421,7 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Worldpay)
                 writer.WriteValue("$worldpay");
-       }
+        }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {

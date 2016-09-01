@@ -105,6 +105,16 @@ namespace SiftScienceNet
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
         }
 
+        public async Task<ResponseStatus> Chargeback(Chargeback chargeback, dynamic customFields = null, bool returnScore = false)
+        {
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(chargeback, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$chargeback");
+            AddCustomFields(customFields, json);
+
+            return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
+        }
+
         public async Task<ResponseStatus> UpdateAccount(Account account, dynamic customFields = null, bool returnScore = false)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(account, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
