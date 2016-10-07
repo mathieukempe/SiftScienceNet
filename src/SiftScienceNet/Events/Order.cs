@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SiftScienceNet.Events
@@ -34,7 +35,10 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$shipping_address")]
         public Address ShippingAddress { get; set; }
-     
+
+        [JsonProperty("$shipping_method")]
+        public ShippingMethod ShippingMethod { get; set; }
+
         [JsonProperty("$items")]
         public List<Item> Items { get; set; }
 
@@ -46,5 +50,36 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$ip")]
         public string Ip { get; set; }
+    }
+
+    [JsonConverter(typeof(ShippingMethodConverter))]
+    public enum ShippingMethod
+    {
+        Physical,
+        Electronic
+    }
+
+    public class ShippingMethodConverter : JsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            ShippingMethod method = (ShippingMethod)value;
+
+            if (method == ShippingMethod.Physical)
+                writer.WriteValue("$physical");
+
+            if (method == ShippingMethod.Electronic)
+                writer.WriteValue("$electronic");
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CanConvert(Type objectType)
+        {
+            return objectType == typeof(SocialSignOn);
+        }
     }
 }
