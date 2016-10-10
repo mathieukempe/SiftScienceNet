@@ -23,7 +23,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> AddItemToCart(string userId, Item item, string sessionId = "", bool returnScore = false);
         Task<ResponseStatus> RemoveItemToCart(string userId, Item item, int quantity, string sessionId = "", bool returnScore = false);
         Task<ResponseStatus> SubmitReview(Review review, dynamic customFields = null, bool returnScore = false);
-        Task<ResponseStatus> CreateContent(CreateContent content, dynamic customFields = null, bool returnScore = false);
+        Task<ResponseStatus> CreateContent(Content content, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", bool returnScore = false);
         Task<ResponseStatus> Login(string userId, string sessionId, bool success, bool returnScore = false);
         Task<ResponseStatus> Logout(string userId, bool returnScore = false);
