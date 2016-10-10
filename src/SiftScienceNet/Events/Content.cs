@@ -42,7 +42,7 @@ namespace SiftScienceNet.Events
         [JsonProperty("$locations")]
         public IEnumerable<Address> Locations { get; set; }
 
-        [JsonProperty("image_hashes")]
+        [JsonProperty("$image_hashes")]
         public IEnumerable<string> ImageHashes { get; set; }
 
         [JsonProperty("$expiration_time")]
@@ -50,6 +50,9 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$status")]
         public ContentStatus? Status { get; set; }
+
+        [JsonProperty("$time")]
+        public int? Time { get; set; }
     }
 
     [JsonConverter(typeof(ContentStatusConverter))]
