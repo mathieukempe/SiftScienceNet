@@ -165,7 +165,7 @@ namespace SiftScienceNet
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
         }
 
-        public async Task<ResponseStatus> CreateContent(CreateContent content, dynamic customFields = null, bool returnScore = false)
+        public async Task<ResponseStatus> CreateContent(Content content, dynamic customFields = null, bool returnScore = false)
         {
             JObject json = JObject.Parse(JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);

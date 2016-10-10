@@ -79,7 +79,7 @@ namespace SiftScienceNet.Events
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(SocialSignOn);
+            return objectType == typeof(ShippingMethod);
         }
     }
 }
