@@ -45,6 +45,7 @@
     <Compile Include="Events\Address.cs" />
     <Compile Include="Events\Chargeback.cs" />
     <Compile Include="Events\Content.cs" />
+    <Compile Include="Events\UpdateOrderStatus.cs" />
     <Compile Include="SiftResponse.cs" />
     <Compile Include="Events\CreateContent.cs" />
     <Compile Include="Events\Item.cs" />

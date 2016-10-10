@@ -17,6 +17,7 @@ namespace SiftScienceNet
     {
         Task<ResponseStatus> CustomEvent(string userId, string type, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateOrder(Order order, dynamic customFields = null, bool returnScore = false);
+        Task<ResponseStatus> UpdateOrder(Order order, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> Transaction(Transaction transaction, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateAccount(Account account, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> UpdateAccount(Account account, dynamic customFields = null, bool returnScore = false);
@@ -24,6 +25,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> RemoveItemToCart(string userId, Item item, int quantity, string sessionId = "", bool returnScore = false);
         Task<ResponseStatus> SubmitReview(Review review, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateContent(Content content, dynamic customFields = null, bool returnScore = false);
+        Task<ResponseStatus> UpdateContent(Content content, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", bool returnScore = false);
         Task<ResponseStatus> Login(string userId, string sessionId, bool success, bool returnScore = false);
         Task<ResponseStatus> Logout(string userId, bool returnScore = false);
@@ -67,6 +69,28 @@ namespace SiftScienceNet
             JObject json = JObject.Parse(JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$create_order");
+
+            AddCustomFields(customFields, json);
+
+            return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
+        }
+
+        public async Task<ResponseStatus> UpdateOrder(Order order, dynamic customFields = null, bool returnScore = false)
+        {
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$update_order");
+
+            AddCustomFields(customFields, json);
+
+            return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
+        }
+
+        public async Task<ResponseStatus> UpdateOrderStatus(UpdateOrderStatus order, dynamic customFields = null, bool returnScore = false)
+        {
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$order_status");
 
             AddCustomFields(customFields, json);
 
@@ -170,6 +194,31 @@ namespace SiftScienceNet
             JObject json = JObject.Parse(JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
             json.Add("$api_key", _apiKey);
             json.Add("$type", "$create_content");
+
+            AddCustomFields(customFields, json);
+
+            return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
+        }
+
+        public async Task<ResponseStatus> UpdateContent(Content content, dynamic customFields = null, bool returnScore = false)
+        {
+            JObject json = JObject.Parse(JsonConvert.SerializeObject(content, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            json.Add("$api_key", _apiKey);
+            json.Add("$type", "$update_content");
+
+            AddCustomFields(customFields, json);
+
+            return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
+        }
+
+        public async Task<ResponseStatus> FlagContent(string userId, string contentId, dynamic customFields = null, bool returnScore = false)
+        {
+            var json = new JObject();
+
+            json.Add("$type", "$flag_content");
+            json.Add("$api_key", _apiKey);
+            json.Add("$user_id", userId);
+            json.Add("$content_id", contentId);
 
             AddCustomFields(customFields, json);
 
