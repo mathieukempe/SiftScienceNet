@@ -211,7 +211,7 @@ namespace SiftScienceNet
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
         }
 
-        public async Task<ResponseStatus> FlagContent(string userId, string contentId, dynamic customFields = null, bool returnScore = false)
+        public async Task<ResponseStatus> FlagContent(string userId, string contentId, string flagedBy, dynamic customFields = null, bool returnScore = false)
         {
             var json = new JObject();
 
@@ -219,6 +219,7 @@ namespace SiftScienceNet
             json.Add("$api_key", _apiKey);
             json.Add("$user_id", userId);
             json.Add("$content_id", contentId);
+            json.Add("$flagged_by", flagedBy);
 
             AddCustomFields(customFields, json);
 

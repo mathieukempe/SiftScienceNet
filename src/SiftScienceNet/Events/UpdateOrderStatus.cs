@@ -13,13 +13,13 @@ namespace SiftScienceNet.Events
         public string UserId { get; set; }
 
         [JsonProperty("$order_status")]
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus? OrderStatus { get; set; }
 
         [JsonProperty("$reason")]
-        public OrderStatusReason Reason { get; set; }
+        public OrderStatusReason? Reason { get; set; }
 
         [JsonProperty("$source")]
-        public OrderStatusSource Source { get; set; }
+        public OrderStatusSource? Source { get; set; }
 
         [JsonProperty("$analyst")]
         public string Analyst { get; set; }
@@ -28,7 +28,7 @@ namespace SiftScienceNet.Events
         public string WebhookId { get; set; }
 
         [JsonProperty("$description")]
-        public Address Description { get; set; }
+        public string Description { get; set; }
 
         [JsonProperty("$time")]
         public int? Time { get; set; }
