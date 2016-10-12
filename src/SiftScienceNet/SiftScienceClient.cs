@@ -26,7 +26,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> SubmitReview(Review review, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateContent(Content content, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> UpdateContent(Content content, dynamic customFields = null, bool returnScore = false);
-        Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", bool returnScore = false);
+        Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", int? time = null, bool returnScore = false);
         Task<ResponseStatus> Login(string userId, string sessionId, bool success, bool returnScore = false);
         Task<ResponseStatus> Logout(string userId, bool returnScore = false);
         Task<ResponseStatus> LinkSessionToUser(string userId, string sessionId, bool returnScore = false);
@@ -226,7 +226,7 @@ namespace SiftScienceNet
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
         }
 
-        public async Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", bool returnScore = false)
+        public async Task<ResponseStatus> SendMessage(string userId, string recipientUserId, string subject = "", string content = "", int? time = null, bool returnScore = false)
         {
             JObject json = new JObject();
 
@@ -240,6 +240,9 @@ namespace SiftScienceNet
 
             if(!String.IsNullOrEmpty(content))
                 json.Add("$content", content);
+
+            if (time.HasValue)
+                json.Add("$time", time.Value);
 
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
         }
