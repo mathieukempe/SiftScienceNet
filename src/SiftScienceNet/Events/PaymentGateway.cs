@@ -20,6 +20,7 @@ namespace SiftScienceNet.Events
         ChasePaymentech,
         Checkoutcom,
         Cielo,
+        Clearsettle,
         Cofinoga,
         Coinbase,
         Collector,
