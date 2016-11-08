@@ -17,7 +17,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> CustomEvent(string userId, string type, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateOrder(Order order, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> UpdateOrder(Order order, dynamic customFields = null, bool returnScore = false);
-        Task<ResponseStatus> UpdateOrderStatus(OrderStatusEvent status, dynamic customFields = null);
+        Task<ResponseStatus> UpdateOrderStatus(UpdateOrderStatus status, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> Transaction(Transaction transaction, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> CreateAccount(Account account, dynamic customFields = null, bool returnScore = false);
         Task<ResponseStatus> UpdateAccount(Account account, dynamic customFields = null, bool returnScore = false);
@@ -84,17 +84,6 @@ namespace SiftScienceNet
             AddCustomFields(customFields, json);
 
             return await PostEvent(json.ToString(), returnScore).ConfigureAwait(false);
-        }
-
-        public async Task<ResponseStatus> UpdateOrderStatus(OrderStatusEvent status, dynamic customFields = null)
-        {
-            JObject json = JObject.Parse(JsonConvert.SerializeObject(status, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
-            json.Add("$api_key", _apiKey);
-            json.Add("$type", "$order_status");
-
-            AddCustomFields(customFields, json);
-
-            return await PostEvent(json.ToString(), false).ConfigureAwait(false);
         }
 
         public async Task<ResponseStatus> UpdateOrderStatus(UpdateOrderStatus order, dynamic customFields = null, bool returnScore = false)
