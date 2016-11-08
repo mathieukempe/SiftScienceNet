@@ -12,7 +12,15 @@ namespace SiftScienceNet.Events
         GiftCard, 
         Points, 
         Financing,  
-        ThirdPartyProcessor
+        ThirdPartyProcessor,
+        Cash,
+        Check,
+        CryptoCurrency,
+        Interac,
+        Invoice,
+        MoneyOrder,
+        Masterpass,
+        Voucher
     }
 
     public class PaymentTypeConverter : JsonConverter
