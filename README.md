@@ -3,6 +3,12 @@ SiftScienceNet
 
 SiftScienceNet is a .NET class library that provides an easy-to-use async interface for the  [SiftScience](https://siftscience.com) SiftScience web api. 
 
+##Installation
+
+[This package is on NuGet](https://www.nuget.org/packages/SiftScienceNet/)
+
+Enter `Install-Package SiftScienceNet` into the NuGet package manager console.
+
 ##Initializing
 
 ```csharp
