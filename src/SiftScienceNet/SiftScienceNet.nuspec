@@ -8,8 +8,8 @@
     <owners>$author$</owners>    
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Updated client to use asynchronous.</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <releaseNotes>Added shipping method</releaseNotes>
+    <copyright>Copyright 2016</copyright>
     <tags>SiftScience, async client</tags>
 	<iconUrl>http://cdn.shopify.com/s/files/applications/e7fa0e1b5b55961c87cf55964c5779a4.png</iconUrl>
 	<projectUrl>https://github.com/mathieukempe/siftsciencenet</projectUrl>
