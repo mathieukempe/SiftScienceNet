@@ -12,7 +12,15 @@ namespace SiftScienceNet.Events
         GiftCard, 
         Points, 
         Financing,  
-        ThirdPartyProcessor
+        ThirdPartyProcessor,
+        Cash,
+        Check,
+        CryptoCurrency,
+        Interac,
+        Invoice,
+        MoneyOrder,
+        Masterpass,
+        Voucher
     }
 
     public class PaymentTypeConverter : JsonConverter
@@ -41,6 +49,30 @@ namespace SiftScienceNet.Events
 
             if (paymentType == PaymentType.ThirdPartyProcessor)
                 writer.WriteValue("$third_party_processor");
+
+            if (paymentType == PaymentType.Cash)
+                writer.WriteValue("$cash");
+
+            if (paymentType == PaymentType.Check)
+                writer.WriteValue("$check");
+
+            if (paymentType == PaymentType.CryptoCurrency)
+                writer.WriteValue("$crypto_currency");
+
+            if (paymentType == PaymentType.Interac)
+                writer.WriteValue("$interac");
+
+            if (paymentType == PaymentType.Invoice)
+                writer.WriteValue("$invoice");
+
+            if (paymentType == PaymentType.MoneyOrder)
+                writer.WriteValue("$money_order");
+
+            if (paymentType == PaymentType.Masterpass)
+                writer.WriteValue("$masterpass");
+
+            if (paymentType == PaymentType.Voucher)
+                writer.WriteValue("$voucher");
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

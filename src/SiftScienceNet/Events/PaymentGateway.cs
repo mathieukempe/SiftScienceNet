@@ -20,6 +20,7 @@ namespace SiftScienceNet.Events
         ChasePaymentech,
         Checkoutcom,
         Cielo,
+        Clearsettle,
         Cofinoga,
         Coinbase,
         Collector,
@@ -157,6 +158,9 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Cielo)
                 writer.WriteValue("$cielo");
+
+            if (paymentGateway == PaymentGateway.Clearsettle)
+                writer.WriteValue("$clearsettle");
 
             if (paymentGateway == PaymentGateway.Cofinoga)
                 writer.WriteValue("$cofinoga");

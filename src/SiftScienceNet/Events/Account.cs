@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SiftScienceNet.Events
 {
@@ -22,6 +23,9 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$referrer_user_id")]
         public string ReferrerUserId { get; set; }
+
+        [JsonProperty("payment_methods")]
+        public List<PaymentMethod> PaymentMethods { get; set; }
 
         [JsonProperty("$billing_address")]
         public Address BillingAddress { get; set; }
