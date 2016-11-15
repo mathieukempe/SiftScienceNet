@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SiftScienceNet.Events;
 using SiftScienceNet.Scores;
+using SiftScienceNet.Labels;
 
 namespace SiftScienceNet
 {
@@ -30,7 +31,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> Login(string userId, string sessionId, bool success, bool returnScore = false);
         Task<ResponseStatus> Logout(string userId, bool returnScore = false);
         Task<ResponseStatus> LinkSessionToUser(string userId, string sessionId, bool returnScore = false);
-        Task<ResponseStatus> Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "");
+        Task<ResponseStatus> Label(string userId, bool isBad, AbuseType abuseType, string description = "", string analyst = "", string source = "");
         Task<ScoreResponse> GetSiftScore(string userId);
     }
 
@@ -299,7 +300,7 @@ namespace SiftScienceNet
 
         #region Labels
 
-        public async Task<ResponseStatus> Label(string userId, bool isBad, IEnumerable<Labels.Reason> reasons = null, string description = "", string analyst = "", string source = "")
+        public async Task<ResponseStatus> Label(string userId, bool isBad, AbuseType abuseType, string description = "", string analyst = "", string source = "")
         {
             JObject json = new JObject();
 
@@ -307,39 +308,16 @@ namespace SiftScienceNet
             json.Add("$is_bad", isBad);
             json.Add("$user_id", Uri.EscapeDataString(userId));
 
-            if (!string.IsNullOrEmpty(analyst))
-                json.Add("$analyst", analyst);
+            var abuse = JsonConvert.SerializeObject(abuseType, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            json.Add("$abuse_type", abuse);
 
-
-            var reasonsForBad = new List<string>();
-            if (reasons != null)
+            if (!String.IsNullOrEmpty(analyst))
             {
-                foreach (var reason in reasons)
-                {
-                    switch (reason)
-                    {
-                        case Labels.Reason.Chargeback:
-                            reasonsForBad.Add("$chargeback");
-                            break;
-                        case Labels.Reason.DuplicateAccount:
-                            reasonsForBad.Add("$duplicate_account");
-                            break;
-                        case Labels.Reason.Spam:
-                            reasonsForBad.Add("$spam");
-                            break;
-                        case Labels.Reason.Fake:
-                            reasonsForBad.Add("$fake");
-                            break;
-                        case Labels.Reason.Referral:
-                            reasonsForBad.Add("$referral");
-                            break;
-                        case Labels.Reason.Funneling:
-                            reasonsForBad.Add("$funneling");
-                            break;
-                    }
-                }
+                json.Add("$analyst", analyst);
+            }
 
-                json.Add("$reasons", new JArray(reasonsForBad));
+            if (!String.IsNullOrEmpty(source))
+            {
                 json.Add("$source", source);
             }
 
