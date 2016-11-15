@@ -159,7 +159,7 @@ namespace SiftScienceNet.Events
             if (paymentGateway == PaymentGateway.Cielo)
                 writer.WriteValue("$cielo");
 
-            if (paymentGateway == PaymentGateway.Cielo)
+            if (paymentGateway == PaymentGateway.Clearsettle)
                 writer.WriteValue("$clearsettle");
 
             if (paymentGateway == PaymentGateway.Cofinoga)
