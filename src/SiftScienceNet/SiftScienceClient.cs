@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using SiftScienceNet.Events;
 using SiftScienceNet.Scores;
 using SiftScienceNet.Labels;
+using System.Dynamic;
 
 namespace SiftScienceNet
 {
@@ -302,33 +303,32 @@ namespace SiftScienceNet
 
         public async Task<ResponseStatus> Label(string userId, bool isBad, AbuseType abuseType, string description = "", string analyst = "", string source = "")
         {
-            JObject json = new JObject();
+            var baseObject = new ExpandoObject() as IDictionary<string, Object>;
+            baseObject.Add("$abuse_type", abuseType);
 
-            json.Add("$api_key", _apiKey);
-            json.Add("$is_bad", isBad);
-            json.Add("$user_id", Uri.EscapeDataString(userId));
-
-            var abuse = JsonConvert.SerializeObject(abuseType, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-            json.Add("$abuse_type", abuse);
+            baseObject.Add("$api_key", _apiKey);
+            baseObject.Add("$is_bad", isBad);
 
             if (!String.IsNullOrEmpty(analyst))
             {
-                json.Add("$analyst", analyst);
+                baseObject.Add("$analyst", analyst);
             }
 
             if (!String.IsNullOrEmpty(source))
             {
-                json.Add("$source", source);
+                baseObject.Add("$source", source);
             }
 
             if (!String.IsNullOrEmpty(description))
             {
-                json.Add("$description", description);
+                baseObject.Add("$description", description);
             }
+
+            var json = JsonConvert.SerializeObject(baseObject, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.PostAsync(string.Format(Globals.LabelsEndpoint, Uri.EscapeDataString(userId)), new StringContent(json.ToString(), Encoding.UTF8, "application/json")).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PostAsync(string.Format(Globals.LabelsEndpoint, Uri.EscapeDataString(userId)), new StringContent(json, Encoding.UTF8, "application/json")).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
