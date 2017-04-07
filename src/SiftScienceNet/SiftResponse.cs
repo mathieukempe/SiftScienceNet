@@ -18,7 +18,7 @@ namespace SiftScienceNet
         public string Request { get; set; }
 
         [JsonProperty("score_response")]
-        public SiftScore Score { get; set; }
+        public ScoreResponse ScoreResponse { get; set; }
 
         public override string ToString()
         {
