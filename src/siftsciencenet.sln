@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiftScienceNet", "SiftScienceNet\SiftScienceNet.csproj", "{7D57EF7D-3AB6-458C-84C0-EB9867D58608}"
 EndProject
@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{45BB04
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiftScienceNetTests1", "SiftScienceNetTests1\SiftScienceNetTests1.csproj", "{B5AD0DA4-51C6-4D07-9C70-DC6900E362EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D57EF7D-3AB6-458C-84C0-EB9867D58608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5AD0DA4-51C6-4D07-9C70-DC6900E362EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5AD0DA4-51C6-4D07-9C70-DC6900E362EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5AD0DA4-51C6-4D07-9C70-DC6900E362EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5AD0DA4-51C6-4D07-9C70-DC6900E362EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

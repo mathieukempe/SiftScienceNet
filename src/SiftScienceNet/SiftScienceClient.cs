@@ -361,10 +361,10 @@ namespace SiftScienceNet
             {
                 var json = response.Content.ReadAsStringAsync().Result;
 
-                return new ScoreResponse { StatusCode = (int)response.StatusCode, SiftScore = JsonConvert.DeserializeObject<SiftScore>(json) };
+                return JsonConvert.DeserializeObject<ScoreResponse>(json);
             }
 
-            return new ScoreResponse { StatusCode = (int)response.StatusCode };
+            return new ScoreResponse { Status = (int)response.StatusCode };
         }
 
         #endregion
