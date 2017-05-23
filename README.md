@@ -3,13 +3,13 @@ SiftScienceNet
 
 SiftScienceNet is a .NET class library that provides an easy-to-use async interface for the  [SiftScience](https://siftscience.com) SiftScience web api. 
 
-##Installation
+## Installation
 
 [This package is on NuGet](https://www.nuget.org/packages/SiftScienceNet/)
 
 Enter `Install-Package SiftScienceNet` into the NuGet package manager console.
 
-##Initializing
+## Initializing
 
 ```csharp
 
@@ -27,11 +27,11 @@ var response = await siftClient.CreateOrder(new Order{ ... });
 
 
 
-##Sending events to Siftscience
+## Sending events to Siftscience
 
 [SiftScience events api](https://siftscience.com/docs/references/events-api)
 
-###Create Order
+### Create Order
 
 ```csharp
 
@@ -96,7 +96,7 @@ var response = siftClient.CreateOrder(new Order
 
 ```
 
-###Transaction
+### Transaction
 
 ```csharp
 
@@ -143,7 +143,7 @@ var response = siftClient.Transaction(new Transaction
 
 ```
 
-###Create account
+### Create account
 
 ```csharp
 
@@ -163,7 +163,7 @@ siftClient.CreateAccount(new Account
 
 ```
 
-###Update account
+### Update account
 
 ```csharp
 
@@ -189,7 +189,7 @@ siftClient.UpdateAccount(new Account
 
 ```
 
-###Add item to cart
+### Add item to cart
 
 ```csharp
 
@@ -212,7 +212,7 @@ siftClient.AddItemToCart("1",new Item
             },"54f3ds25423523gfdsgf4gfds").Result;
 ```
 
-###Remove item from cart
+### Remove item from cart
 ```csharp
 
  siftClient.RemoveItemToCart("1", new Item
@@ -235,7 +235,7 @@ siftClient.AddItemToCart("1",new Item
 
 ```
 
-###Send message
+### Send message
 
 ```csharp
 
@@ -243,7 +243,7 @@ siftClient.SendMessage("1", "4", "some subject", "hello ").Result;
 
 ```
 
-###Login (Success)
+### Login (Success)
 
 ```csharp
 
@@ -251,7 +251,7 @@ siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", true).Result;
 
 ```
 
-###Login (Failure)
+### Login (Failure)
 
 ```csharp
 
@@ -259,7 +259,7 @@ siftClient.Login("1", "u4ryixmnkwxm1aviiyq4yez1", false).Result;
 
 ```
 
-###Logout
+### Logout
 
 ```csharp
 
@@ -267,7 +267,7 @@ siftClient.Logout("1").Result;
 
 ```
 
-###Link user to session
+### Link user to session
 
 ```csharp
 
@@ -276,7 +276,7 @@ siftClient.LinkSessionToUser("1", "u4ryixmnkwxm1aviiyq4yez1").Result;
 ```
 
 
-##Label users in Siftscience
+## Label users in Siftscience
 
 [SiftScience labels api](https://siftscience.com/docs/references/labels-api/)
 
@@ -287,7 +287,7 @@ siftClient.Label("1", true, new List<Reason> { Reason.Chargeback, Reason.Funneli
 
 ```
 
-##User score from Siftscience
+## User score from Siftscience
 
 [SiftScience scores api](https://siftscience.com/docs/getting-scores/)
 
@@ -297,7 +297,7 @@ ScoreResponse scoreResponse = siftClient.GetSiftScore("1").Result;
 
 ```
 
-##Sending Historical data
+## Sending Historical data
 
 [SiftScience sending historical data](https://siftscience.com/docs/tutorials/sending-historical-data/)
 
