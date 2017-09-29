@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SiftScienceNet.Events
 {
@@ -53,6 +50,9 @@ namespace SiftScienceNet.Events
 
         [JsonProperty("$time")]
         public int? Time { get; set; }
+
+        [JsonProperty("$ip")]
+        public string Ip { get; set; }
     }
 
     [JsonConverter(typeof(ContentStatusConverter))]

@@ -30,6 +30,9 @@ namespace SiftScienceNet.Events
         [JsonProperty("$billing_address")]
         public Address BillingAddress { get; set; }
 
+        [JsonProperty("$shipping_address")]
+        public Address ShippingAddress { get; set; }
+
         [JsonProperty("$social_sign_on_type")]
         public SocialSignOn? SocialSignOn { get; set; }
 
