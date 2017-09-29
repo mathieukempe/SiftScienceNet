@@ -5,7 +5,7 @@
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
-    <owners>$author$</owners>    
+    <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Added shipping method</releaseNotes>
@@ -14,5 +14,8 @@
 	<iconUrl>http://cdn.shopify.com/s/files/applications/e7fa0e1b5b55961c87cf55964c5779a4.png</iconUrl>
 	<projectUrl>https://github.com/mathieukempe/siftsciencenet</projectUrl>
 	<licenseUrl>https://github.com/Selz/SiftScienceNet/blob/master/LICENSE</licenseUrl>
+  <dependencies>
+    <dependency id="Newtonsoft.Json" version="[8.0.3,10.0.1)" />
+  </dependencies>
   </metadata>
 </package>

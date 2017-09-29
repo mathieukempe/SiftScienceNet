@@ -15,6 +15,7 @@ namespace SiftScienceNet.Events
         Balanced,
         Beanstream,
         BluePay,
+        BoaCompra,
         Braintree,
         CCAvenue,
         ChasePaymentech,
@@ -122,6 +123,9 @@ namespace SiftScienceNet.Events
 
             if (paymentGateway == PaymentGateway.Affirm)
                 writer.WriteValue("$affirm");
+
+            if (paymentGateway == PaymentGateway.BoaCompra)
+                writer.WriteValue("$boacompra");
 
             if (paymentGateway == PaymentGateway.Alipay)
                 writer.WriteValue("$alipay");
