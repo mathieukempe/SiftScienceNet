@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace SiftScienceNet.Scores
 {
-    public class ScoreResponse
+    public class ScoreResponseBase
     {
         [JsonProperty("user_id")]
         public string UserId { get; set; }
@@ -16,14 +16,29 @@ namespace SiftScienceNet.Scores
         [JsonProperty("scores")]
         public Dictionary<AbuseType, SiftScore> Scores { get; set; }
 
-        [JsonProperty("latest_label")]
-        public LatestLabel LatestLabel { get; set; }
-
         [JsonProperty("error_message")]
         public string ErrorMessage { get; set; }
 
         [JsonProperty("status")]
         public int Status { get; set; }
+    }
+
+    public class LegacyScoreResponse : ScoreResponseBase
+    {
+        [JsonProperty("latest_labels")]
+        public LatestLabel LatestLabels { get; set; }
+
+        [JsonProperty("score")]
+        public double Score { get; set; }
+
+        [JsonProperty("reasons")]
+        public List<ScoreReason> Reasons { get; set; }
+    }
+
+    public class ScoreResponse : ScoreResponseBase
+    {
+        [JsonProperty("latest_label")]
+        public LatestLabel LatestLabel { get; set; }
     }
 
     public class DictionaryWithAbuseTypeKeyConverter : JsonConverter
