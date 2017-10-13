@@ -34,6 +34,7 @@ namespace SiftScienceNet
         Task<ResponseStatus> LinkSessionToUser(string userId, string sessionId, bool returnScore = false);
         Task<ResponseStatus> Label(string userId, bool isBad, AbuseType abuseType, string description = "", string analyst = "", string source = "");
         Task<ScoreResponse> GetSiftScore(string userId);
+        Task<LegacyScoreResponse> GetSiftLegacyScore(string userId);
     }
 
     /// <summary>
@@ -369,5 +370,25 @@ namespace SiftScienceNet
 
         #endregion
 
+        #region LegacyScore
+
+        public async Task<LegacyScoreResponse> GetSiftLegacyScore(string userId)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.GetAsync(string.Format(Globals.LegacyScoreEndpoint, Uri.EscapeDataString(userId), _apiKey)).ConfigureAwait(false);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = response.Content.ReadAsStringAsync().Result;
+
+                return JsonConvert.DeserializeObject<LegacyScoreResponse>(json);
+            }
+
+            return new LegacyScoreResponse { Status = (int)response.StatusCode };
+        }
+
+        #endregion
     }
 }
