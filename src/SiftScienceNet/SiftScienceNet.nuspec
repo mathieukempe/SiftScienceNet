@@ -15,7 +15,7 @@
 	<projectUrl>https://github.com/mathieukempe/siftsciencenet</projectUrl>
 	<licenseUrl>https://github.com/Selz/SiftScienceNet/blob/master/LICENSE</licenseUrl>
   <dependencies>
-    <dependency id="Newtonsoft.Json" version="[8.0.3,10.0.1)" />
+    <dependency id="Newtonsoft.Json" version="8.0.3" />
   </dependencies>
   </metadata>
 </package>
